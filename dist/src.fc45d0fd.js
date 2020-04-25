@@ -68290,7 +68290,7 @@ var __extends = void 0 && (void 0).__extends || function () {
 }();
 
 //'require("./github.svg")'
-var StyledApp = _styledComponents.default.main(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  height: 100%;\n  display: grid;\n  grid-template-areas:\n    'header'\n    'content';\n  grid-template-rows: 3rem auto;\n  grid-template-columns: 100%;\n"], ["\n  height: 100%;\n  display: grid;\n  grid-template-areas:\n    'header'\n    'content';\n  grid-template-rows: 3rem auto;\n  grid-template-columns: 100%;\n"])));
+var StyledApp = _styledComponents.default.main(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  height: 100%;\n  display: grid;\n  grid-template-areas:\n    \"header\"\n    \"content\";\n  grid-template-rows: 3rem auto;\n  grid-template-columns: 100%;\n"], ["\n  height: 100%;\n  display: grid;\n  grid-template-areas:\n    \"header\"\n    \"content\";\n  grid-template-rows: 3rem auto;\n  grid-template-columns: 100%;\n"])));
 
 var StyledHeader = _styledComponents.default.header(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: stretch;\n  grid-area: header;\n  padding: 0.5rem 1rem;\n"], ["\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: stretch;\n  grid-area: header;\n  padding: 0.5rem 1rem;\n"])));
 
@@ -68310,9 +68310,12 @@ function (_super) {
   }
 
   Header.prototype.render = function () {
-    return _react.default.createElement(StyledHeader, null, _react.default.createElement(StyledLogo, {
+    return _react.default.createElement(StyledHeader, null, _react.default.createElement(StyledLink, {
+      href: "https://github.com/headwinds/fantasy",
+      target: "headwinds-github fantasy"
+    }, _react.default.createElement(StyledLogo, {
       src: _github.default
-    }), _react.default.createElement("div", {
+    })), _react.default.createElement("div", {
       style: {
         opacity: 0
       }
@@ -68394,7 +68397,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65238" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50211" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

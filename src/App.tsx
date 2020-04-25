@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import './App.css'
-import { StateChart } from './xstate-viz'
+import React, { Component } from "react";
+import "./App.css";
+import { StateChart } from "./xstate-viz";
 // import { Machine, StateNode, MachineOptions, assign } from "xstate"
-import styled from 'styled-components'
-import { myMachine } from './machine'
+import styled from "styled-components";
+import { myMachine } from "./machine";
 // This import is not supported
 // import logo from "./logo.svg"
 // Looks like a codesandbox issue. The following works locally
-import logo from "./github.svg"//'require("./github.svg")'
+import logo from "./github.svg"; //'require("./github.svg")'
 
 const StyledApp = styled.main`
   height: 100%;
   display: grid;
   grid-template-areas:
-    'header'
-    'content';
+    "header"
+    "content";
   grid-template-rows: 3rem auto;
   grid-template-columns: 100%;
-`
+`;
 
 const StyledHeader = styled.header`
   display: flex;
@@ -26,11 +26,11 @@ const StyledHeader = styled.header`
   justify-content: stretch;
   grid-area: header;
   padding: 0.5rem 1rem;
-`
+`;
 
 const StyledLogo = styled.img`
   height: 100%;
-`
+`;
 
 const StyledLinks = styled.nav`
   display: flex;
@@ -40,7 +40,7 @@ const StyledLinks = styled.nav`
   &,
   &:visited {
   }
-`
+`;
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -50,13 +50,19 @@ const StyledLink = styled.a`
   font-size: 75%;
   font-weight: bold;
   margin: 0 0.25rem;
-`
+`;
 
 class Header extends Component {
   render() {
     return (
       <StyledHeader>
-        <StyledLogo src={logo} />
+        <StyledLink
+          href="https://github.com/headwinds/fantasy"
+          target="headwinds-github fantasy"
+        >
+          <StyledLogo src={logo} />
+        </StyledLink>
+
         <div style={{ opacity: 0 }}>
           <StyledLinks>
             <StyledLink
@@ -77,7 +83,7 @@ class Header extends Component {
           </StyledLinks>
         </div>
       </StyledHeader>
-    )
+    );
   }
 }
 
@@ -88,8 +94,8 @@ class App extends Component {
         <Header />
         <StateChart machine={myMachine} />
       </StyledApp>
-    )
+    );
   }
 }
 
-export default App
+export default App;
