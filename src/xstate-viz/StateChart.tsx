@@ -12,7 +12,7 @@ import {
 import * as XState from "xstate"
 import { getEdges } from "@xstate/graph"
 import { StateChartNode } from "./StateChartNode"
-
+import Game from "../components/game/Game";
 import { serializeEdge, isHidden, initialStateNodes } from "./utils"
 import { Edge } from "./Edge"
 import { tracker } from "./tracker"
@@ -161,9 +161,6 @@ function toMachine(machine: StateNode<any> | string): StateNode<any> {
 
   const machineProxy = (config: any, options: any, ctx: any) => {
     resultMachine = Machine(config, options, ctx)
-
-    console.log(resultMachine)
-
     return resultMachine
   }
 
@@ -201,7 +198,7 @@ export class StateChart extends React.Component<
       current: machine.initialState,
       preview: undefined,
       previewEvent: undefined,
-      view: "definition", // or 'state'
+      view: "state", // or 'definition'
       machine: machine,
       code:
         typeof this.props.machine === "string"
@@ -256,6 +253,18 @@ export class StateChart extends React.Component<
                 )}
               </Field>
             </div>
+               <Field
+              label="Game"
+              style={{
+                marginTop: "auto",
+                borderTop: "1px solid #777",
+                flexShrink: 0,
+                background: "var(--color-sidebar)",
+                height: 200
+              }}
+            >
+          <Game />
+        </Field>
             <Field
               label="Event"
               style={{
@@ -381,6 +390,7 @@ export class StateChart extends React.Component<
           "--border-width": "2px"
         }}
       >
+    
         <StyledVisualization>
           <StateChartNode
             stateNode={this.state.machine}
@@ -481,6 +491,7 @@ export class StateChart extends React.Component<
             })}
           </svg>
         </StyledVisualization>
+      
         <StyledSidebar>
           <StyledViewTabs>
             {["definition", "state"].map(view => {

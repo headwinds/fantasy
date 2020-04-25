@@ -3,11 +3,18 @@ import "./App.css";
 import { StateChart } from "./xstate-viz";
 // import { Machine, StateNode, MachineOptions, assign } from "xstate"
 import styled from "styled-components";
-import { myMachine } from "./machine";
+//import { myMachine } from "./machine";
+import { ffMachine } from "./components/xstate/ffMachine";
+import PartyHeader from "./components/game/PartyHeader";
 // This import is not supported
 // import logo from "./logo.svg"
 // Looks like a codesandbox issue. The following works locally
 import logo from "./github.svg"; //'require("./github.svg")'
+
+import archerPath from "./ff_archer.png"; 
+import clericPath from "./ff_cleric.png"; 
+import magePath from "./ff_mage.png"; 
+import warriorPath from "./ff_warrior.png"; 
 
 const StyledApp = styled.main`
   height: 100%;
@@ -62,7 +69,7 @@ class Header extends Component {
         >
           <StyledLogo src={logo} />
         </StyledLink>
-
+        <PartyHeader />
         <div style={{ opacity: 0 }}>
           <StyledLinks>
             <StyledLink
@@ -92,7 +99,7 @@ class App extends Component {
     return (
       <StyledApp>
         <Header />
-        <StateChart machine={myMachine} />
+        <StateChart machine={ffMachine} />
       </StyledApp>
     );
   }

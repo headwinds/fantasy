@@ -1,6 +1,7 @@
 import { Machine, assign } from 'xstate'
 
 // The hierarchical (recursive) schema for the states
+/*
 interface LightStateSchema {
   states: {
     green: {}
@@ -13,6 +14,46 @@ interface LightStateSchema {
       }
     }
   }
+}
+*/
+
+
+type Hero = {
+  name: "hero",
+}
+
+type Enemy = {
+  name: "enemy",
+}
+
+type Result = {
+  score: 1,
+}
+
+type Round = {
+  order: 1,
+  attacker: Hero,
+  defender: Enemy,
+  result: Result
+}
+
+type EnemyCollection = Enemy[];
+type HeroCollection = Hero[];
+type RoundCollection = Round[];
+
+type GameContext = {
+    turnCount: number,
+    enemies: EnemyCollection,
+    party: HeroCollection,
+    phase: string,
+    selectedAction: string,
+    selectedEnemy: Hero,
+    selectedHero: Enemy,
+    experience: number,
+    round: RoundCollection,
+    roundResolved: boolean, 
+    hereosActedCount: number,
+    hereosTotal: number,
 }
 
 // The events that the machine handles
@@ -29,6 +70,27 @@ interface LightContext {
 export const myMachine = Machine({
   id: 'finalfantasy',
   initial: 'shipping',
+  context: {
+  turnCount: 0,
+        enemies: initialEnemies,
+        party: initialParty,
+        phase: "start",
+        selectedAction: PARTY_FIGHT,
+        selectedEnemy: initialEnemies[0],
+        selectedHero: initialParty[0],
+        experience: 0,
+        round: [
+          {
+            order: 1,
+            attacker: {},
+            defender: {},
+            result: {}
+          }
+        ],
+        roundResolved: false, 
+        hereosActedCount: 0,
+        hereosTotal: initialParty.length,
+    },
   states: {
     shipping: {
       on: {

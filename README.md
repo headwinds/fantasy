@@ -4,6 +4,8 @@ Explores indie game design and development through an [XState](https://xstate.js
 
 Let's face it - you probably won't get to use Typescript & Styled Components at your day job so you might as well weekend-warrior it and build something fun while learning something that can be applied to any app; prepare for that day when you do.
 
+Games are a form of mediation. As you build the game, let your mind wander on your life, business, and the journey of your customers. 
+
 [demo](https://final-fantasy.now.sh)
 
 ## getting starter
