@@ -13,11 +13,10 @@ function updateContext(produceFn) {
   );
 }
 
-
 export const ffMachine = Machine(
   {
-    id: "finalfantasy",
-    initial: "travelling",
+    id: "final-fantasy",
+    initial: "town",
     context: {
       turnCount: 0,
       enemies: initialEnemies,
@@ -32,15 +31,72 @@ export const ffMachine = Machine(
           order: 1,
           attacker: {},
           defender: {},
-          result: {}
-        }
+          result: {},
+        },
       ],
-      roundResolved: false, 
+      roundResolved: false,
       hereosActedCount: 0,
       hereosTotal: initialParty.length,
     },
     states: {
-      travelling: {
+      town: {
+        on: {
+          CONVERSATION: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+        entry: [],
+        exit: []
+      },
+      shop: {
+        on: {
+          BUY: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+          SELL: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+          TRADE: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+      },
+      road: {
+        on: {
+          CONVERSATION: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+      },
+      forest: {
+        on: {
+          ENCOUNTER: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+      },
+      castle: {
+        on: {
+          ENCOUNTER: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+      },
+      cave: {
+        on: {
+          ENCOUNTER: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+      },
+      encounter: {
+        on: {
+          EXAMINE: {
+            actions: updateContext((context) => context.turnCount++),
+          },
+        },
+      }
+      battle: {
         on: {
           INCREMENT: {
             actions: updateContext((context) => context.turnCount++),
@@ -51,7 +107,7 @@ export const ffMachine = Machine(
           INC_HERO_ACTED_COUNT: {
             actions: updateContext((context) => {
               if (context.hereosActedCount < context.hereosTotal) {
-                return context.hereosActedCount++
+                return context.hereosActedCount++;
               }
             }),
           },
@@ -86,16 +142,15 @@ export const ffMachine = Machine(
           },
           SELECTED_HERO: {
             actions: updateContext(
-              (context, action) =>
-                (context.selectedHero = action.selectedHero)
+              (context, action) => (context.selectedHero = action.selectedHero)
             ),
           },
           REWARD_EXPERIENCE: {
             actions: assign({
-              experience: 100
-            })
-          }
-        }
+              experience: 100,
+            }),
+          },
+        },
       },
       results: { type: "final" },
       gameover: { type: "final" },
@@ -112,5 +167,20 @@ export const ffMachine = Machine(
         return context.experience < 0;
       },
     },
+    actions: {
+      // action implementations
+      activate: (context, event) => {
+        console.log('activating...');
+      },
+      notifyActive: (context, event) => {
+        console.log('active!');
+      },
+      notifyInactive: (context, event) => {
+        console.log('inactive!');
+      },
+      sendTelemetry: (context, event) => {
+        console.log('time:', Date.now());
+      }
+    }
   }
 );

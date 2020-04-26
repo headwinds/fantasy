@@ -69452,8 +69452,8 @@ function updateContext(produceFn) {
 }
 
 var ffMachine = (0, _xstate.Machine)({
-  id: "finalfantasy",
-  initial: "travelling",
+  id: "final-fantasy",
+  initial: "town",
   context: {
     turnCount: 0,
     enemies: _config.initialEnemies,
@@ -69474,7 +69474,82 @@ var ffMachine = (0, _xstate.Machine)({
     hereosTotal: _config.initialParty.length
   },
   states: {
-    travelling: {
+    town: {
+      on: {
+        CONVERSATION: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      },
+      entry: [],
+      exit: []
+    },
+    shop: {
+      on: {
+        BUY: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        },
+        SELL: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        },
+        TRADE: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      }
+    },
+    road: {
+      on: {
+        CONVERSATION: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      }
+    },
+    forest: {
+      on: {
+        ENCOUNTER: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      }
+    },
+    castle: {
+      on: {
+        ENCOUNTER: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      }
+    },
+    cave: {
+      on: {
+        ENCOUNTER: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      }
+    },
+    encounter: {
+      on: {
+        EXAMINE: {
+          actions: updateContext(function (context) {
+            return context.turnCount++;
+          })
+        }
+      }
+    },
+    battle: {
       on: {
         INCREMENT: {
           actions: updateContext(function (context) {
@@ -69550,6 +69625,21 @@ var ffMachine = (0, _xstate.Machine)({
     didPlayerLose: function didPlayerLose(context, event) {
       // check if player lost
       return context.experience < 0;
+    }
+  },
+  actions: {
+    // action implementations
+    activate: function activate(context, event) {
+      console.log('activating...');
+    },
+    notifyActive: function notifyActive(context, event) {
+      console.log('active!');
+    },
+    notifyInactive: function notifyInactive(context, event) {
+      console.log('inactive!');
+    },
+    sendTelemetry: function sendTelemetry(context, event) {
+      console.log('time:', Date.now());
     }
   }
 });
@@ -69781,7 +69871,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53032" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65100" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

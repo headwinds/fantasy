@@ -11,10 +11,7 @@ import PartyHeader from "./components/game/PartyHeader";
 // Looks like a codesandbox issue. The following works locally
 import logo from "./github.svg"; //'require("./github.svg")'
 
-import archerPath from "./ff_archer.png"; 
-import clericPath from "./ff_cleric.png"; 
-import magePath from "./ff_mage.png"; 
-import warriorPath from "./ff_warrior.png"; 
+
 
 const StyledApp = styled.main`
   height: 100%;
